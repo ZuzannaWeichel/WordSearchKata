@@ -21,4 +21,20 @@ public class WordSearch {
 		String [] searchWords = reader.nextLine().split(",");
 		return searchWords;
 	}
+
+	public String[][] getLetterMatrix(int size) {
+		String [][] letters = new String [size][];
+		int i = 0;
+		while(reader.hasNextLine()) {
+			letters[i] = reader.nextLine().split(",");
+			System.out.println(Arrays.toString(letters[i]));
+			i++;
+		}
+		return letters;
+	}
+	
+	public void findWords(int size) {
+		getSearchWords();
+		getLetterMatrix(size);
+	}
 }

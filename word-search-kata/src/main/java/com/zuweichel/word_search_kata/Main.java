@@ -7,13 +7,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		File file = new File("etc/matrix.txt");
+	
 		try {
 			WordSearch wordSearch = new WordSearch(file);
+			wordSearch.findWords(15);
+			
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
 		
-		//WordSearch.findWords();
+		
 	}
 
 }
