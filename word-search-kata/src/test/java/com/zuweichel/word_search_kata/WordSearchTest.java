@@ -35,6 +35,23 @@ public class WordSearchTest {
 		Assert.assertTrue(results.size() == 2);
 		Assert.assertEquals("DOG: [(0 0), (1 0)]" , results.get(0).toString());
 		Assert.assertEquals("DOG: [(0 0), (1 1)]" , results.get(1).toString());
-
+	}
+	
+	@Test
+	public void check_for_word_in_given_direction() {
+		List<List<WordResult>> allResults = search.checkForRemainingLetters();
+		System.out.println("result size = "+allResults.size());
+		Assert.assertEquals(2,allResults.size());
+		Assert.assertEquals(2,allResults.get(0).size());
+		Assert.assertEquals(2,allResults.get(1).size());
+	}
+	
+	@Test
+	public void is_on_board() {
+		Assert.assertTrue(search.isNextLetterOnBoard(1, 1, Direction.DOWN));
+		Assert.assertFalse(search.isNextLetterOnBoard(2, 2, Direction.DOWN));
+		Assert.assertFalse(search.isNextLetterOnBoard(0, 0, Direction.UP));
+		Assert.assertTrue(search.isNextLetterOnBoard(0, 2, Direction.DOWN));
+		Assert.assertFalse(search.isNextLetterOnBoard(2, 0, Direction.DOWN));
 	}
 }

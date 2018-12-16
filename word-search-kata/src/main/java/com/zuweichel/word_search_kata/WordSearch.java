@@ -21,7 +21,7 @@ public class WordSearch {
 	public List<Coordinates> findFirstLetter(String letter) {
 		List<Coordinates> lettersFound = new ArrayList<Coordinates>();
 
-		for(int x = 0 ; x < matrix.length-1; x++) {
+		for(int x = 0 ; x < matrix.length; x++) {
 			for(int y = 0 ; y < matrix[x].length-1; y++) {
 				if(letter.equals(matrix[x][y])) {
 					lettersFound.add(new Coordinates(x, y));
@@ -47,7 +47,7 @@ public class WordSearch {
 			for(Direction d : directions) {
 				int xDir = x+d.getX();
 				int yDir = y+d.getY();
-				if(xDir >= 0 && yDir >= 0 && xDir < gridSize && yDir < gridSize) {
+				if(isNextLetterOnBoard(x, y, d)) {
 					
 					if(matrix[xDir][yDir].equals(word.substring(1,2))) {
 						result = new WordResult(word, new ArrayList<Coordinates>());
@@ -60,7 +60,40 @@ public class WordSearch {
 				}	
 			}
 		}
-		System.out.println(results);
 		return results;
+	}
+
+	public List<List<WordResult>> checkForRemainingLetters() {
+		List<List<WordResult>> allResults = new ArrayList<>();
+		List<WordResult> results = null; 
+		for(String word: searchWords) {
+			results = findNextLetter(word);
+			System.out.println("results after findnextLetter for"+word+" = "+results);
+			
+			for(WordResult result : results) {
+				int x = result.getLastLetterCoordinates().getX();
+				int y  = result.getLastLetterCoordinates().getY();
+				Direction d = result.getDirection();
+				
+				if(isNextLetterOnBoard(x, y, d)) {
+					int xDir = x+d.getX();
+					int yDir = y+d.getY();
+					for(int i = 2; i < word.length(); i++) {
+						if(matrix[xDir][yDir].equals(word.substring(i, i+1))) {
+							result.addCoordinates(new Coordinates(xDir, yDir));
+							allResults.add(results);
+							System.out.println("results after nextStep for"+word+" = "+results);
+						}
+					}
+				}
+			}
+		}
+		return allResults;
+	}
+	
+	public boolean isNextLetterOnBoard(int x, int y , Direction d) {
+		int xDir = x+d.getX();
+		int yDir = y+d.getY();
+		return xDir >= 0 && yDir >= 0 && xDir < gridSize && yDir < gridSize;
 	}
 }

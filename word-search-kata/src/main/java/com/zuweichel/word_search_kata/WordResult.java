@@ -41,6 +41,10 @@ public class WordResult {
 		this.direction = direction;
 	}
 	
+	public Coordinates getLastLetterCoordinates() {
+		return coordinates.get(coordinates.size()-1);
+	}
+	
 	@Override
 	public String toString() {
 		return word+": "+coordinates;

@@ -13,7 +13,7 @@ public class Main {
 	String dog = "DOG";
 	System.out.println(dog.substring(0, 1));
 	System.out.println(dog.substring(1, 2));
-		
+	System.out.println(dog.substring(2, 3));	
 	}
 
 }
