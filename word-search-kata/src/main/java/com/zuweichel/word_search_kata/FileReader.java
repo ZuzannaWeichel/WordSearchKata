@@ -25,6 +25,10 @@ public class FileReader {
 			rows.add(reader.nextLine());
 		}
 	}
+	
+	public int getGridSize() {
+		return rows.size()-1;
+	}
 		
 	public String[] getSearchWords() {
 		String [] searchWords = rows.get(0).split(",");

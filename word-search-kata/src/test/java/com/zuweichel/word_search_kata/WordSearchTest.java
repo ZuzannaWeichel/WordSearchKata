@@ -19,15 +19,22 @@ public class WordSearchTest {
 	public void setup() throws FileNotFoundException {
 		this.file = new File("etc/miniMatrix.txt");
 		this.reader = new FileReader(file);
-		this.search = new WordSearch(reader.getLetterMatrix(), reader.getSearchWords());
+		this.search = new WordSearch(reader.getLetterMatrix(), reader.getSearchWords(), reader.getGridSize());
 	}
 	
 	@Test
 	public void find_first_letter() {
-		List<int[]> locations = new ArrayList<>();
-		locations.add(new int[] {0,0});
-		Assert.assertArrayEquals(locations.get(0), search.findFirstLetter("D").get(0));
+		List<Coordinates> locations = new ArrayList<Coordinates>();
+		locations.add(new Coordinates(0, 0));
+		Assert.assertEquals(locations, search.findFirstLetter("D"));
 	}
 	
-	
+	@Test
+	public void find_next_letter() {
+		List<WordResult> results = search.findNextLetter("DOG");
+		Assert.assertTrue(results.size() == 2);
+		Assert.assertEquals("DOG: [(0 0), (1 0)]" , results.get(0).toString());
+		Assert.assertEquals("DOG: [(0 0), (1 1)]" , results.get(1).toString());
+
+	}
 }
