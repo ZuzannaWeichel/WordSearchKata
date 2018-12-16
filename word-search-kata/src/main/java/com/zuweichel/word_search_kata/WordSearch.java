@@ -1,40 +1,28 @@
 package com.zuweichel.word_search_kata;
 
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class WordSearch {
-
-	File file;
-	Scanner reader;
 	
-	public WordSearch(File file) throws FileNotFoundException {
-		this.file = file;
-		reader = new Scanner(file);
+	String[][] matrix;
+	String[] searchWords;
+	
+	public WordSearch(String [][] matrix, String[] searchWords) {
+		this.matrix = matrix;
+		this.searchWords = searchWords;
 	}
 
-	public String[] getSearchWords() {
-		String [] searchWords = reader.nextLine().split(",");
-		return searchWords;
-	}
+	public List<int[]> findFirstLetter(String letter) {
+		List<int[]> lettersFound = new ArrayList<>();
 
-	public String[][] getLetterMatrix(int size) {
-		String [][] letters = new String [size][];
-		int i = 0;
-		while(reader.hasNextLine()) {
-			letters[i] = reader.nextLine().split(",");
-			System.out.println(Arrays.toString(letters[i]));
-			i++;
+		for(int x = 0 ; x < matrix.length-1; x++) {
+			for(int y = 0 ; y < matrix[x].length-1; y++) {
+				if(letter.equals(matrix[x][y])) {
+					lettersFound.add(new int[]{x,y});
+				}
+			}
 		}
-		return letters;
-	}
-	
-	public void findWords(int size) {
-		getSearchWords();
-		getLetterMatrix(size);
+		return lettersFound;
 	}
 }

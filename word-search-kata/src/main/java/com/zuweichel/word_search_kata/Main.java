@@ -5,17 +5,12 @@ import java.io.FileNotFoundException;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 		File file = new File("etc/matrix.txt");
-	
-		try {
-			WordSearch wordSearch = new WordSearch(file);
-			wordSearch.findWords(15);
-			
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		}
+		FileReader reader = new FileReader(file);
+		WordSearch search = new WordSearch(reader.getLetterMatrix(), reader.getSearchWords());
 		
+	
 		
 	}
 
