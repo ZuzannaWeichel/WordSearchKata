@@ -2,7 +2,9 @@ package com.zuweichel.word_search_kata;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class WordSearch {
 	
@@ -55,7 +57,6 @@ public class WordSearch {
 						result.addCoordinates(new Coordinates(xDir,yDir));
 						result.setDirection(d);
 						results.add(result);
-						System.out.println(xDir+" "+yDir+" gridSize "+ gridSize+ " direction: "+d);
 					}
 				}	
 			}
@@ -68,21 +69,20 @@ public class WordSearch {
 		List<WordResult> results = null; 
 		for(String word: searchWords) {
 			results = findNextLetter(word);
-			System.out.println("results after findnextLetter for"+word+" = "+results);
 			
 			for(WordResult result : results) {
-				int x = result.getLastLetterCoordinates().getX();
-				int y  = result.getLastLetterCoordinates().getY();
-				Direction d = result.getDirection();
-				
-				if(isNextLetterOnBoard(x, y, d)) {
-					int xDir = x+d.getX();
-					int yDir = y+d.getY();
-					for(int i = 2; i < word.length(); i++) {
+				for(int i = 2; i < word.length(); i++) {
+					int x = result.getLastLetterCoordinates().getX();
+					int y  = result.getLastLetterCoordinates().getY();
+					Direction d = result.getDirection();
+						
+					if(isNextLetterOnBoard(x, y, d)) {
+						int xDir = x+d.getX();
+						int yDir = y+d.getY();
+					
 						if(matrix[xDir][yDir].equals(word.substring(i, i+1))) {
 							result.addCoordinates(new Coordinates(xDir, yDir));
 							allResults.add(results);
-							System.out.println("results after nextStep for"+word+" = "+results);
 						}
 					}
 				}
@@ -95,5 +95,24 @@ public class WordSearch {
 		int xDir = x+d.getX();
 		int yDir = y+d.getY();
 		return xDir >= 0 && yDir >= 0 && xDir < gridSize && yDir < gridSize;
+	}
+
+	public Set<WordResult> validateResult(List<List<WordResult>> allResults) {
+		Set<WordResult> foundWords = new HashSet<>();
+		for(List<WordResult> results : allResults) {
+			for(WordResult result : results) {
+				if(result.getCoordinates().size() == result.getWord().length()) {
+					foundWords.add(result);
+				}
+			}
+		}
+		return foundWords;
+	}
+	
+	public void findWords() {
+		Set<WordResult> words = validateResult(checkForRemainingLetters());
+		for(WordResult word : words) {
+			System.out.println(word.toString());
+		}
 	}
 }

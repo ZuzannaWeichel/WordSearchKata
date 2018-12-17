@@ -38,6 +38,15 @@ public class WordSearchTest {
 	}
 	
 	@Test
+	public void is_on_board() {
+		Assert.assertTrue(search.isNextLetterOnBoard(1, 1, Direction.DOWN));
+		Assert.assertFalse(search.isNextLetterOnBoard(2, 2, Direction.DOWN));
+		Assert.assertFalse(search.isNextLetterOnBoard(0, 0, Direction.UP));
+		Assert.assertTrue(search.isNextLetterOnBoard(0, 2, Direction.DOWN));
+		Assert.assertFalse(search.isNextLetterOnBoard(2, 0, Direction.DOWN));
+	}
+	
+	@Test
 	public void check_for_word_in_given_direction() {
 		List<List<WordResult>> allResults = search.checkForRemainingLetters();
 		System.out.println("result size = "+allResults.size());
@@ -47,11 +56,11 @@ public class WordSearchTest {
 	}
 	
 	@Test
-	public void is_on_board() {
-		Assert.assertTrue(search.isNextLetterOnBoard(1, 1, Direction.DOWN));
-		Assert.assertFalse(search.isNextLetterOnBoard(2, 2, Direction.DOWN));
-		Assert.assertFalse(search.isNextLetterOnBoard(0, 0, Direction.UP));
-		Assert.assertTrue(search.isNextLetterOnBoard(0, 2, Direction.DOWN));
-		Assert.assertFalse(search.isNextLetterOnBoard(2, 0, Direction.DOWN));
+	public void assess_if_valid_results() {
+		List<List<WordResult>> allResults = search.checkForRemainingLetters();
+		search.validateResult(allResults);
+		Assert.assertEquals(2, search.validateResult(allResults).size());
+		Assert.assertEquals("[DOG: [(0 0), (1 0), (2 0)], CAT: [(0 2), (1 2), (2 2)]]", search.validateResult(allResults).toString());
 	}
+
 }

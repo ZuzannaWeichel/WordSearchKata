@@ -3,7 +3,6 @@ package com.zuweichel.word_search_kata;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -41,7 +40,6 @@ public class FileReader {
 		int index = 0;
 		for(int i = 1; i <= size ; i++ ){
 			letters[index] = rows.get(i).split(",");
-			//System.out.println(Arrays.toString(letters[index]));
 			index++;
 		}
 		return letters;

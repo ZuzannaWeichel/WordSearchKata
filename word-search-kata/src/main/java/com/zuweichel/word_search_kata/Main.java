@@ -9,11 +9,10 @@ public class Main {
 		File file = new File("etc/matrix.txt");
 		FileReader reader = new FileReader(file);
 		WordSearch search = new WordSearch(reader.getLetterMatrix(), reader.getSearchWords(), reader.getGridSize());
+		//System.out.println(search.checkForRemainingLetters());
 		
-	String dog = "DOG";
-	System.out.println(dog.substring(0, 1));
-	System.out.println(dog.substring(1, 2));
-	System.out.println(dog.substring(2, 3));	
+		search.findWords();
+	
 	}
 
 }
