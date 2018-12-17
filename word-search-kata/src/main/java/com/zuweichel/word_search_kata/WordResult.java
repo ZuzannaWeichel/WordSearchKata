@@ -47,7 +47,11 @@ public class WordResult {
 	
 	@Override
 	public String toString() {
-		return word+": "+coordinates;
+		String toPrint = word+": ";
+		for(Coordinates c : coordinates) {
+			toPrint += c+", ";
+		}
+		return toPrint.substring(0, toPrint.length()-2);
 	}
 	
 	

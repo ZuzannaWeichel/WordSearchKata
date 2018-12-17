@@ -2,7 +2,7 @@ package com.zuweichel.word_search_kata;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -98,7 +98,7 @@ public class WordSearch {
 	}
 
 	public Set<WordResult> validateResult(List<List<WordResult>> allResults) {
-		Set<WordResult> foundWords = new HashSet<>();
+		Set<WordResult> foundWords = new LinkedHashSet<>();
 		for(List<WordResult> results : allResults) {
 			for(WordResult result : results) {
 				if(result.getCoordinates().size() == result.getWord().length()) {

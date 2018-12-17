@@ -9,7 +9,6 @@ public class Main {
 		File file = new File("etc/matrix.txt");
 		FileReader reader = new FileReader(file);
 		WordSearch search = new WordSearch(reader.getLetterMatrix(), reader.getSearchWords(), reader.getGridSize());
-		//System.out.println(search.checkForRemainingLetters());
 		
 		search.findWords();
 	
