@@ -6,8 +6,8 @@
  * You can load it with any file as long as it follows the pattern:
    * comma separated search words in first line
    * comma separated letters in square grid
-
-```BONES,KHAN,KIRK,SCOTTY,SPOCK,SULU,UHURA <br/>
+```
+BONES,KHAN,KIRK,SCOTTY,SPOCK,SULU,UHURA 
 U,M,K,H,U,L,K,I,N,V,J,O,C,W,E
 L,L,S,H,K,Z,Z,W,Z,C,G,J,U,Y,G
 H,S,U,P,J,P,R,J,D,H,S,B,X,T,G
