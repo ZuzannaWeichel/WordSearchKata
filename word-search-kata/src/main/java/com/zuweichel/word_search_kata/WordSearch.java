@@ -110,9 +110,11 @@ public class WordSearch {
 	}
 	
 	public void findWords() {
-		Set<WordResult> words = validateResult(checkForRemainingLetters());
+		List<List<WordResult>> results = checkForRemainingLetters();
+		Set<WordResult> words = validateResult(results);
 		for(WordResult word : words) {
 			System.out.println(word.toString());
 		}
 	}
+
 }

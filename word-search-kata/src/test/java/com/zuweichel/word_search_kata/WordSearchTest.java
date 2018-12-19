@@ -49,7 +49,7 @@ public class WordSearchTest {
 	@Test
 	public void check_for_word_in_given_direction() {
 		List<List<WordResult>> allResults = search.checkForRemainingLetters();
-		System.out.println("result size = "+allResults.size());
+		//System.out.println("result size = "+allResults.size());
 		Assert.assertEquals(2,allResults.size());
 		Assert.assertEquals(2,allResults.get(0).size());
 		Assert.assertEquals(2,allResults.get(1).size());
